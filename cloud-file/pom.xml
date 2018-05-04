@@ -9,12 +9,13 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-share</artifactId>
+    <artifactId>cloud-file</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>cloud-share-api</module>
-        <module>cloud-share-service</module>
-        <module>cloud-share-common</module>
+        <module>cloud-file-api</module>
+        <module>cloud-file-service</module>
+        <module>cloud-file-domain</module>
+        <module>cloud-file-dao</module>
     </modules>
 
 

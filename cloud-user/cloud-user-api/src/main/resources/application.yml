@@ -1,0 +1,21 @@
+eureka:
+  client:
+    serviceUrl:
+#      defaultZone: '@eureka.defaultZone@'
+      defaultZone: 'http://localhost:8062/eureka/'
+  instance:
+    preferIpAddress: true
+server:
+#  port: @server.port@
+  port: 8988
+spring:
+  application:
+    name: services-user
+#  http:
+#    multipart:
+#      max-file-size: 512Mb
+#      max-request-size: 512Mb
+
+feign:
+  okhttp:
+    enabled: true

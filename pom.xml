@@ -11,6 +11,8 @@
 		<module>cloud-register</module>
         <module>cloud-share</module>
 		<module>cloud-manager</module>
+        <module>cloud-common</module>
+		<module>cloud-file</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -29,10 +31,10 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
 		<jdk.version>1.8</jdk.version>
-		<plugin.maven-clean-plugin.version>2.2</plugin.maven-clean-plugin.version>
-		<plugin.maven-resources-plugin.version>2.4.1</plugin.maven-resources-plugin.version>
-		<plugin.maven-compiler-plugin.version>3.0</plugin.maven-compiler-plugin.version>
-		<plugin.maven-install-plugin.version>2.4</plugin.maven-install-plugin.version>
+		<!--<plugin.maven-clean-plugin.version>2.2</plugin.maven-clean-plugin.version>-->
+		<!--<plugin.maven-resources-plugin.version>2.4.1</plugin.maven-resources-plugin.version>-->
+		<!--<plugin.maven-compiler-plugin.version>3.0</plugin.maven-compiler-plugin.version>-->
+		<!--<plugin.maven-install-plugin.version>2.4</plugin.maven-install-plugin.version>-->
 		<encoding>UTF-8</encoding>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
@@ -41,16 +43,16 @@
 		<guava.version>19.0</guava.version>
 		<asm.version>5.0.4</asm.version>
 		<cglib.version>3.2.0</cglib.version>
-		<jackson.version>2.7.9</jackson.version>
-		<jackson.databind.version>2.7.9.1</jackson.databind.version>
-		<woodstox.version>4.4.1</woodstox.version>
+		<!--<jackson.version>2.7.9</jackson.version>-->
+		<!--<jackson.databind.version>2.7.9.1</jackson.databind.version>-->
+		<!--<woodstox.version>4.4.1</woodstox.version>-->
 		<druid.version>0.2.5</druid.version>
 		<mysql.version>5.1.35</mysql.version>
 		<mongodb.driver.version>2.13.0</mongodb.driver.version>
 		<spring.mongodb.version>1.7.0.RELEASE</spring.mongodb.version>
 		<spring.commons.version>1.10.1.RELEASE</spring.commons.version>
 		<jim.client.version>1.4.5-SNAPSHOT</jim.client.version>
-		<cloud.image.version>1.0.4-SNAPSHOT</cloud.image.version>
+		<!--<cloud.image.version>1.0.4-SNAPSHOT</cloud.image.version>-->
 
 		<primitive-client.version>1.0.4-SNAPSHOT</primitive-client.version>
 		<mail.version>1.4.1</mail.version>
@@ -59,7 +61,7 @@
 
 		<java.version>1.8</java.version>
 
-		<spring-cloud.version>Camden.RELEASE</spring-cloud.version>
+		<spring-cloud.version>1.4.0.RELEASE</spring-cloud.version>
 		<junit.version>4.12</junit.version>
 		<javax.servlet-api.version>4.0.0</javax.servlet-api.version>
 
@@ -79,14 +81,14 @@
 		</dependency>
 	</dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+	<!--<build>-->
+		<!--<plugins>-->
+			<!--<plugin>-->
+				<!--<groupId>org.springframework.boot</groupId>-->
+				<!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+			<!--</plugin>-->
+		<!--</plugins>-->
+	<!--</build>-->
 
 
 </project>
