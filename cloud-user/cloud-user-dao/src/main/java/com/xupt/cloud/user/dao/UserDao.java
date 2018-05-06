@@ -11,4 +11,7 @@ public class UserDao {
         return null;
     }
 
+    public User insert(User user) {
+        return null;
+    }
 }

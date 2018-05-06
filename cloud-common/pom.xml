@@ -121,7 +121,7 @@
 
         <!--<dependency>-->
             <!--<groupId>com.jd.common</groupId>-->
-            <!--<artifactId>jd-common-util</artifactId>-->
+            <!--<artifactId>jd-common-common</artifactId>-->
             <!--<exclusions>-->
                 <!--<exclusion>-->
                     <!--<groupId>org.springframework</groupId>-->

@@ -7,10 +7,10 @@ eureka:
     preferIpAddress: true
 server:
 #  port: @server.port@
-  port: 8988
+  port: 8081
 spring:
   application:
-    name: services-user
+    name: service-user
 #  http:
 #    multipart:
 #      max-file-size: 512Mb

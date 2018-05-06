@@ -1,0 +1,39 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<beans xmlns="http://www.springframework.org/schema/beans"-->
+       <!--xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+       <!--xsi:schemaLocation="-->
+	  <!--http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"-->
+       <!--default-autowire="byName">-->
+
+
+    <!--&lt;!&ndash; velocity 配置 &ndash;&gt;-->
+    <!--<bean id="mvcVelocityEngine" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">-->
+        <!--<property name="preferFileSystemAccess" value="false"/>-->
+        <!--<property name="resourceLoaderPath" value="classpath:/templates" />-->
+        <!--<property name="velocityProperties">-->
+            <!--<props>-->
+                <!--&lt;!&ndash; 指定模板引擎进行模板处理的编码 &ndash;&gt;-->
+                <!--<prop key="input.encoding">utf-8</prop>-->
+                <!--&lt;!&ndash; 指定输出流的编码 &ndash;&gt;-->
+                <!--<prop key="output.encoding">utf-8</prop>-->
+                <!--&lt;!&ndash; 不缓存，少量模板时使用 &ndash;&gt;-->
+                <!--<prop key="spring.resource.loader.cache">false</prop>-->
+            <!--</props>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="defaultViewResolver" class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">-->
+        <!--<property name="cache" value="false"/>&lt;!&ndash;是否缓存模板 &ndash;&gt;-->
+        <!--<property name="prefix" value=""/>-->
+        <!--<property name="suffix" value=".vm"/>-->
+        <!--<property name="contentType" value="text/html;charset=utf-8"/>-->
+        <!--<property name="exposeRequestAttributes" value="true"/>-->
+        <!--<property name="requestContextAttribute" value="request"/>-->
+
+        <!--<property name="dateToolAttribute" value="dateTool" />-->
+        <!--<property name="numberToolAttribute" value="numberTool" />-->
+        <!--<property name="toolboxConfigLocation" value="/toolbox.xml"/>-->
+        <!--<property name="viewClass" value="com.jd.ins.baome.manager.web.velocity.VelocityLayoutToolboxView"/>-->
+    <!--</bean>-->
+
+<!--</beans>-->

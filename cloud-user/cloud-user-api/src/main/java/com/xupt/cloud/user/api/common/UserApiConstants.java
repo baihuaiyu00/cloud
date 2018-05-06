@@ -6,6 +6,6 @@ package com.xupt.cloud.user.api.common;
 public interface UserApiConstants {
 
     String USER_API_VERSION = "/v1";
-    String USER_API_APPLICATION_NAME = "SERVICES-USER";
+    String USER_API_APPLICATION_NAME = "SERVICE-USER";
     String USER_API_URL_PREFIX = "http://" + USER_API_APPLICATION_NAME + "/" + USER_API_VERSION;
 }
