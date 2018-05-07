@@ -1,7 +1,7 @@
 package com.xupt.cloud.user.api.common;
 
 
-import com.xupt.cloud.manager.common.util.IReplyMsg;
+import com.xupt.cloud.common.util.IReplyMsg;
 
 public enum UserApiReplyMsg implements IReplyMsg {
 

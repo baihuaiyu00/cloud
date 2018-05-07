@@ -7,6 +7,7 @@
 <body>
     <h1>freeMaker?</h1>
     <div>
+        <#--<form action="/v1/login" method="post">-->
         <form action="/v1/login" method="post">
             username:<input trpe="text" name="username"><br>
             password:<input type="text" name="password"><br>

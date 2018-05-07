@@ -10,6 +10,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>cloud-file-service</artifactId>
+    <dependencies>
+        <dependency>
+            <groupId>com.xupt</groupId>
+            <artifactId>cloud-file-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xupt</groupId>
+            <artifactId>cloud-file-dao</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

@@ -1,8 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd"
        default-autowire="byName">
 
-    <!--<bean id="userDao" class="com.xupt.cloud.user.dao.UserDao"/>-->
+    <bean id="fileDao" class="com.xupt.cloud.file.dao.FileDao">
+        <property name="cloudMongoTemplate" ref="cloudMongoTemplate"/>
+        <property name="collectionName" value="file"/>
+    </bean>
+
+
+
+    <!--mongo profile-->
+    <mongo:mongo-client id="cloudMongo"
+                        credentials="${cloud.mongo.username}:${cloud.mongo.password}@${cloud.mongo.database}"
+                        replica-set="${cloud.mongo.hostAndPorts}">
+        <mongo:client-options
+                connections-per-host="${cloud.mongo.connectionsPerHost}"
+                threads-allowed-to-block-for-connection-multiplier="${cloud.mongo.threadsAllowedToBlockForConnectionMultiplier}"
+                max-wait-time="${cloud.mongo.maxWaitTime}"
+                connect-timeout="${cloud.mongo.connectTimeout}"
+                socket-timeout="${cloud.mongo.socketTimeout}"
+                socket-keep-alive="${cloud.mongo.socketKeepAlive}"
+                write-concern="${cloud.mongo.write-concern}"
+                read-preference="${cloud.mongo.read-preference}"
+        />
+    </mongo:mongo-client>
+
+    <mongo:db-factory id="cloudMongoDbFactory" dbname="${cloud.mongo.database}" mongo-ref="cloudMongo"/>
+
+
+    <bean id="cloudMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg name="mongoDbFactory" ref="cloudMongoDbFactory"/>
+        <constructor-arg ref="mappingConverter"/>
+    </bean>
+
+    <mongo:mapping-converter id="mappingConverter" db-factory-ref="cloudMongoDbFactory">
+        <mongo:custom-converters base-package="com.xupt.**.mongo.converter"/>
+    </mongo:mapping-converter>
+
 </beans>
+
+
+

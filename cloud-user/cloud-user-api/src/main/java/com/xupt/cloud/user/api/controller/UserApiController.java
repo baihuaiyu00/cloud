@@ -1,6 +1,6 @@
 package com.xupt.cloud.user.api.controller;
 
-import com.xupt.cloud.manager.common.util.Replys;
+import com.xupt.cloud.common.util.Replys;
 import com.xupt.cloud.user.api.common.UserApiConstants;
 import com.xupt.cloud.user.api.common.UserApiReplyMsg;
 import com.xupt.cloud.user.service.UserService;
@@ -28,6 +28,7 @@ public class UserApiController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity userRegister(@RequestBody User user){
         try {
+            LOGGER.info("success into user register controller!");
             userService.addUser(user);
             return Replys.success(UserApiReplyMsg.USER_REGISTER_SUCCESS);
         }catch(Exception e){
@@ -38,20 +39,17 @@ public class UserApiController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity userLogin(@RequestBody User user){
-        return Replys.success(UserApiReplyMsg.USER_LOGIN_SUCCESS);
-        //TODO
-//        try {
-//            Boolean loginResult = userService.queryByUsername(user);
-//            if (loginResult) {
-//                return Replys.success(UserApiReplyMsg.USER_LOGIN_SUCCESS);
-//            } else {
-//                return Replys.error(UserApiReplyMsg.USER_LOGIN_FAIL);
-//            }
-//        }catch (Exception e){
-//            LOGGER.info("login error",e);
-//            return Replys.error(UserApiReplyMsg.USER_LOGIN_ERROR);
-//        }
-
+        try {
+            Boolean loginResult = userService.queryByUsername(user);
+            if (loginResult) {
+                return Replys.success(UserApiReplyMsg.USER_LOGIN_SUCCESS);
+            } else {
+                return Replys.error(UserApiReplyMsg.USER_LOGIN_FAIL);
+            }
+        }catch (Exception e){
+            LOGGER.info("login error",e);
+            return Replys.error(UserApiReplyMsg.USER_LOGIN_ERROR);
+        }
     }
 
 }

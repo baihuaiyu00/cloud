@@ -38,6 +38,11 @@
         </dependency>
         <dependency>
             <groupId>com.xupt</groupId>
+            <artifactId>cloud-file-dao</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xupt</groupId>
             <artifactId>cloud-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>

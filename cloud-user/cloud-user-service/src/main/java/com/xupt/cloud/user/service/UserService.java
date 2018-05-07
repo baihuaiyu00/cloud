@@ -15,8 +15,13 @@ public class UserService {
     @Autowired
     private UserDao userDao;
 
+    /**
+     * select User by username
+     * @param user
+     * @return
+     */
     public boolean queryByUsername(final User user){
-        User userBean = userDao.selectByQuery(user);
+        User userBean = userDao.selectByName(user.getUsername());
         if(Objects.isNull(userBean)){
             return false;
         }
@@ -31,13 +36,13 @@ public class UserService {
         }
     }
 
-    public UserDTO addUser(User user) {
-
-        //TODO 决定是否进行转换
-        UserDTO userDTO = new UserDTO();
-        User userBean = userDao.insert(user);
-        return userDTO;
-
+    /**
+     * add User
+     * @param user
+     * @return
+     */
+    public User addUser(final User user) {
+        return userDao.insert(user);
     }
 
 }

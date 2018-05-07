@@ -4,6 +4,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 
-    <!--<bean id="userService" class="com.xupt.cloud.user.service.UserService"/>-->
+    <bean id="fileService" class="com.xupt.cloud.file.service.FileService"/>
 
 </beans>

@@ -11,5 +11,18 @@
 
     <artifactId>cloud-file-dao</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-mongodb</artifactId>
+            <version>1.7.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xupt</groupId>
+            <artifactId>cloud-file-domain</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
 
 </project>

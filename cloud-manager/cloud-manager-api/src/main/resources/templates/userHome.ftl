@@ -8,6 +8,7 @@
     <h1>userHome?</h1>
     <div>
         <a href="/v1/myFile">upload</a>
+        <a href="/v1/file/list?userName=123">fileList</a>
     </div>
 </body>
 </html>

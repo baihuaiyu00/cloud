@@ -1,4 +1,4 @@
-package com.xupt.cloud.manager.common.util;
+package com.xupt.cloud.common.util;
 
 
 public interface IReplyMsg {
