@@ -11,14 +11,11 @@ server:
 spring:
   application:
     name: service-manager
-  #¾²Ì¬×ÊÔ´Ó³Éä
-  mvc:
-    static-path-pattern: static/**
-    view:
-      suffix: .html
-      prefix: /static/
-  resources:
-    static-locations: classpath:/static/
+  #ï¿½ï¿½Ì¬ï¿½ï¿½Ô´Ó³ï¿½ï¿½
+#  mvc:
+#    static-path-pattern: static/**
+#  resources:
+#    static-locations: classpath:/static/
 #  http:
 #    multipart:
 #      max-file-size: 512Mb

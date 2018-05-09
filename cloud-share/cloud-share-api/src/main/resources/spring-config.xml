@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd"
+       default-autowire="byName">
+
+    <context:property-placeholder ignore-unresolvable="true"
+                                  location="classpath:resources.properties"/>
+    <util:properties id="properties"
+                     location="classpath:resources.properties"/>
+
+
+    <import resource="classpath:spring/spring-config-service.xml"/>
+    <import resource="classpath:spring/spring-config-dao.xml"/>
+
+    <!-- @ResponseBody -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <bean class="org.springframework.http.converter.StringHttpMessageConverter" /> <!-- 可以处理 */*, text/plain, 以及HttpResponseEntity中的String对象 -->
+                <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" /> <!-- 可以处理 */*, application/json, application/*+json 返回 application/json -->
+            </list>
+        </property>
+    </bean>
+
+
+</beans>

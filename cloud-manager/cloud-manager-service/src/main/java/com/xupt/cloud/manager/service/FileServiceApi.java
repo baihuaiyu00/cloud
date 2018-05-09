@@ -1,7 +1,5 @@
 package com.xupt.cloud.manager.service;
 
-import com.xupt.cloud.manager.domain.MyFile;
-import com.xupt.cloud.manager.domain.query.FileQuery;
 import feign.codec.Encoder;
 import feign.form.spring.SpringFormEncoder;
 import org.springframework.cloud.netflix.feign.FeignClient;
@@ -23,10 +21,15 @@ public interface FileServiceApi {
             produces = {MediaType.APPLICATION_JSON_UTF8_VALUE},
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     @ResponseBody
-    String addFile(@RequestPart(value = "file") MultipartFile file);
+    String addFile(@RequestPart(value = "file") MultipartFile file, @RequestParam(value = "username") String username);
 
-    @RequestMapping(value = "v1/file/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/v1/file/list", method = RequestMethod.GET)
     String getFilePageByQuery(@RequestParam(value = "fileQuery") String fileQuery);
+
+    @RequestMapping(value = "/v1/{userName}/file/{fileName}/del", method = RequestMethod.DELETE)
+    String delFile(@PathVariable(value = "userName") String userName,
+                   @PathVariable(value = "fileName") String fileName);
+
 
     /**
      * 内部类

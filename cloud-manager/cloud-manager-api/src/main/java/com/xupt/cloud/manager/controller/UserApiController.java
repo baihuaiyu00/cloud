@@ -1,6 +1,7 @@
 package com.xupt.cloud.manager.controller;
 
 import com.xupt.cloud.manager.common.ManagerApiConstants;
+import com.xupt.cloud.manager.domain.vo.Manager;
 import com.xupt.cloud.manager.domain.vo.User;
 import com.xupt.cloud.manager.service.UserServiceApi;
 import org.slf4j.Logger;
@@ -33,7 +34,7 @@ public class UserApiController {
             LOGGER.info("username:" + user.getUsername());
             LOGGER.info("password:" + user.getPassword());
             HttpSession session = request.getSession();
-            session.setAttribute("user",user);
+            session.setAttribute("username",user.getUsername());
             return "userHome";
         }catch(Exception e){
             LOGGER.error("login fail",e);
@@ -41,9 +42,25 @@ public class UserApiController {
         }
     }
 
+    @RequestMapping(value = "/manager/login", method = RequestMethod.POST)
+    public String managerLogin(HttpServletRequest request, Manager manager){
+        try {
+            String result = userServiceApi.managerLogin(manager);
+            HttpSession session = request.getSession();
+            session.setAttribute("username",manager.getManagerName());
+            session.setAttribute("managerName",manager.getManagerName());
+            return "userHome";
+        }catch(Exception e){
+            LOGGER.error("manager login fail",e);
+            return "index";
+        }
+    }
+
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public String register(User user){
+    public String register(HttpServletRequest request, User user){
         try{
+            HttpSession session = request.getSession();
+            session.setAttribute("username",user.getUsername());
             String result = userServiceApi.userRegister(user);
             LOGGER.info("success into user register");
             LOGGER.info("result:" + result);

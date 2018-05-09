@@ -1,5 +1,6 @@
 package com.xupt.cloud.manager.service;
 
+import com.xupt.cloud.manager.domain.vo.Manager;
 import com.xupt.cloud.manager.domain.vo.User;
 import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,4 +18,7 @@ public interface UserServiceApi {
 
     @RequestMapping(value = "/v1/register", method = RequestMethod.POST)
     String userRegister(@RequestBody User user);
+
+    @RequestMapping(value = "/v1/manager/login", method = RequestMethod.POST)
+    String managerLogin(@RequestBody Manager manager);
 }

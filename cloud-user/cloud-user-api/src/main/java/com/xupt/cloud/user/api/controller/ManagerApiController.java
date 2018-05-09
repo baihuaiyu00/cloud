@@ -31,13 +31,13 @@ public class ManagerApiController {
         try {
             Boolean loginResult = managerService.queryByManagername(manager);
             if (loginResult) {
-                return Replys.success(UserApiReplyMsg.USER_LOGIN_SUCCESS);
+                return Replys.success(UserApiReplyMsg.MANAGER_LOGIN_SUCCESS);
             } else {
-                return Replys.error(UserApiReplyMsg.USER_LOGIN_FAIL);
+                return Replys.error(UserApiReplyMsg.MANAGER_LOGIN_FAIL);
             }
         }catch (Exception e){
-            LOGGER.info("login error",e);
-            return Replys.error(UserApiReplyMsg.USER_LOGIN_ERROR);
+            LOGGER.info("manager login error",e);
+            return Replys.error(UserApiReplyMsg.MANAGER_LOGIN_ERROR);
         }
     }
 

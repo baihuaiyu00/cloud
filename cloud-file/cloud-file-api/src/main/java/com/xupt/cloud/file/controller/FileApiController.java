@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
@@ -32,15 +33,16 @@ public class FileApiController {
     private FileService fileService;
 
     @RequestMapping(value = "/file", method = RequestMethod.POST)
-    public ResponseEntity addFile(MultipartFile multipartFile){
+    public ResponseEntity addFile(MultipartFile multipartFile, @RequestParam(value = "username") String username, HttpServletRequest request){
         LOGGER.info("success into SERVICE-FILE");
         String pathGet = "\\\\";
         String pathBase = "D:\\usr";
         String path = pathBase+pathGet;
         String fileName = multipartFile.getOriginalFilename();
+//        String username = (String) request.getSession().getAttribute("username");
         try {
             //1.file upload to mongoDB
-            fileService.addFile(multipartFile, path);
+            fileService.addFile(multipartFile, path, username);
             //2.file upload to disk
             File file = new File(path+"/"+fileName);
             multipartFile.transferTo(file);
@@ -70,8 +72,30 @@ public class FileApiController {
         }
     }
 
-    @RequestMapping(value = "/file", method = RequestMethod.GET)
-    public ResponseEntity getFile(@RequestParam String filePath, HttpServletResponse response) {
+    /**
+     * del file
+     * @param userName
+     * @param fileName
+     * @return
+     */
+    @RequestMapping(value = "/{userName}/file/{fileName}/del", method = RequestMethod.DELETE)
+    public ResponseEntity delFile(@PathVariable(value = "userName") String userName,
+                                  @PathVariable(value = "fileName") String fileName){
+        try{
+            LOGGER.info("success into file delete: "+fileName + " " + userName);
+            FileQuery fileQuery = new FileQuery();
+            fileQuery.setFileName(fileName);
+            fileQuery.setUsername(userName);
+            com.xupt.cloud.file.domain.entity.File file = fileService.delFile(fileQuery);
+            return Replys.success(file);
+        }catch(Exception e){
+            LOGGER.error("file delete error", e);
+            return Replys.error(FileApiReplyMsg.FILE_DOWNLOAD_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/file/{filePath}", method = RequestMethod.GET)
+    public ResponseEntity getFile(@PathVariable String filePath, HttpServletResponse response) {
         try {
             OutputStream out = response.getOutputStream();
             return Replys.success(FileApiReplyMsg.FILE_DOWNLOAD_SUCCESS);

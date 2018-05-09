@@ -10,6 +10,17 @@ public class FileQuery extends File {
     private Integer pn =1;
     private Integer pageSize = 10;
     private Boolean needPage = Boolean.FALSE;
+    private String fileType;
+
+    @Override
+    public String getFileType() {
+        return fileType;
+    }
+
+    @Override
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
+    }
 
     public Integer getPn() {
         return pn;

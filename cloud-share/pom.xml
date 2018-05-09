@@ -15,6 +15,8 @@
         <module>cloud-share-api</module>
         <module>cloud-share-service</module>
         <module>cloud-share-common</module>
+        <module>cloud-share-domain</module>
+        <module>cloud-share-dao</module>
     </modules>
 
 

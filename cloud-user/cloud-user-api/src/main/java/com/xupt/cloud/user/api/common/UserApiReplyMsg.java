@@ -9,7 +9,11 @@ public enum UserApiReplyMsg implements IReplyMsg {
     USER_REGISTER_SUCCESS("user register success"),
     USER_LOGIN_SUCCESS("user login success"),
     USER_LOGIN_ERROR("user login error"),
-    USER_LOGIN_FAIL("password or username wrong");
+    USER_LOGIN_FAIL("password or username wrong"),
+
+    MANAGER_LOGIN_SUCCESS("manager login success"),
+    MANAGER_LOGIN_ERROR("manager login error"),
+    MANAGER_LOGIN_FAIL("password or manager wrong");
 
     private String msg;
 

@@ -9,6 +9,7 @@ public class FileQuery extends File{
     private Integer pn =1;
     private Integer pageSize = 10;
     private Boolean needPage = Boolean.FALSE;
+    private String fileType = "all";
 
     public Integer getPn() {
         return pn;
@@ -32,5 +33,15 @@ public class FileQuery extends File{
 
     public void setNeedPage(Boolean needPage) {
         this.needPage = needPage;
+    }
+
+    @Override
+    public String getFileType() {
+        return fileType;
+    }
+
+    @Override
+    public void setFileType(String fileType) {
+        this.fileType = fileType;
     }
 }
