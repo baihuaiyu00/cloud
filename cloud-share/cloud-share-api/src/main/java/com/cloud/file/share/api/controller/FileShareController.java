@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -60,12 +61,25 @@ public class FileShareController {
     public ResponseEntity findShareFile(@RequestParam(value = "fileShare") String fileShareBean){
         try{
             //在此不做判断，只负责传回数据
+            LOGGER.info("success into share-service");
             FileShare fileShare = JSONUtils.fromJson(fileShareBean, FileShare.class);
             FileShare fileShareQuery = fileShareService.findShare(fileShare);
             return Replys.success(fileShareQuery);
         }catch(Exception e){
             LOGGER.error("file share error", e);
             return Replys.error(FileShareApiReplyMsg.FILE_SHARE_FAIL);
+        }
+    }
+
+    @RequestMapping(value = "/{username}/shares", method = RequestMethod.GET)
+    public ResponseEntity shareList(@PathVariable(value = "username") String username){
+        try{
+            LOGGER.info("success into share list");
+            List<FileShare> fileShareList = fileShareService.listShare(username);
+            return Replys.success(fileShareList);
+        }catch(Exception e){
+            LOGGER.info("shares get fail");
+            return Replys.error(FileShareApiReplyMsg.SHARE_LIST_ERROR);
         }
     }
 

@@ -25,7 +25,7 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <!--<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
-    <#--<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>-->
+<#--<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>-->
     <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <![endif]-->
@@ -33,24 +33,13 @@
 
 <body>
 <div class="container">
-    <ul class="nav nav-pills">
-        <li role="presentation"><a href="/v1/">用户</a></li>
-        <li role="presentation" class="active"><a href="/v1/manager">管理员</a></li>
-        <li role="presentation"><a href="/v1/user/register">注册</a></li>
-    </ul>
-
-    <form action="/v1/manager/login" class="form-signin" method="post">
-        <h2 class="form-signin-heading">管理员登录</h2>
-        <label for="ManagerName" class="sr-only">管理员用户名</label>
-        <input type="text" name="managerName" id="managerName" class="form-control" placeholder="请输入管理员用户名" required autofocus>
-        <label for="inputPassword" class="sr-only">管理员密码</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="请输入管理员密码" required>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> 记住我
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    <form action="/v1/file/${userName!}/${fileName!}/share" class="form-signin" method="get">
+        <h2 class="form-signin-heading">SHARE DOWNLOAD</h2>
+        <span>分享用户名称:${userName!}</span>
+        <span>分享文件名称:${fileName!}</span>
+        <label for="inputCode" class="sr-only">Password</label>
+        <input type="text" name="code" id="inputCode" class="form-control" placeholder="Code" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Download</button>
     </form>
 
 </div> <!-- /container -->

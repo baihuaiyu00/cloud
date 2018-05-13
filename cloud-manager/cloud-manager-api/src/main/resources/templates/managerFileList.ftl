@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>用户空间</title>
+    <title>管理员空间</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -47,21 +47,10 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/v1/home">用户主页</a></li>
-                    <li><a href="/v1/myFile">资源上传</a></li>
-                    <li><a href="/v1/${Session['username']}/shares">我的分享</a></li>
-                    <li class="dropdown">
-                        <a href="/v1/file/${Session["username"]}/list" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的资源 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/v1/file/${Session["username"]}/list">全部</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=video">视频</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=audio">音乐</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=application">文档</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=image">图片</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=text">文本</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=others">其他</a></li>
-                        </ul>
-                    </li>
+                    <ul class="nav navbar-nav">
+                        <li><a href="/v1/home">管理员主页 </a></li>
+                        <li class="active"><a href="/v1/user/list">资源管理 </a></li>
+                    </ul>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
@@ -74,37 +63,27 @@
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
-        <p>资源列表.</p><br>
-        <button style="align:right" class="btn btn-info" onclick="files_download()">批量下载</button>
-
+        <p>资源列表.</p>
     <#--<p>-->
     <#--<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>-->
     <#--</p>-->
         <div class="center-block">
             <table class="table table-hover">
                 <tr>
-                    <th><label>
-                        <input type="checkbox" name="checkboxAll" value="checkboxAll" onclick="checkAll()">
-                    </label></th>
                     <th>文件名</th>
                     <#--<td>文件路径</td>-->
                     <th>大小</th>
                     <th>文件类型</th>
                     <th>文件上传时间</th>
-                    <th colspan="3">操作</th>
+                    <th colspan="2">操作</th>
                 </tr>
             <#list fileList as item>
                 <tr>
-                    <td><label>
-                        <input type="checkbox" name="checkbox" id="checkbox" value="${item.fileName!}">
-                    </label></td>
                     <td>${item.fileName!}</td>
                     <#--<td>${item.filePatd!}</td>-->
                     <td>${item.fileSize!}</td>
                     <td>${item.fileType!}</td>
                     <td>${item.updateTime!}</td>
-                    <#--<td><a class="btn btn-info" href="/v1/share/${Session["username"]}/${item.fileName!}">分享</a></td>-->
-                    <td><button onclick="file_share('${item.fileName!}')" class="btn btn-info">分享</button></td>
                     <td><a class="btn btn-info" href="/v1/file?fileName=${item.fileName!}">下载</a></td>
                     <td><button class="btn btn-danger" onclick="file_del('${item.fileName!}')">删除</button></td>
                 </tr>
@@ -115,28 +94,7 @@
 
 </div> <!-- /container -->
 
-<#--file Share-->
-<div class="modal fade" tabindex="-1" role="dialog" id="file_share_modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">分享成功</h4>
-            </div>
-            <div class="modal-body h4">
-                <form id="share_form">
-                    文件名称:<span id="file_name"></span><br>
-                    文件路径：<span id="file_site"></span><br>
-                    提取码：<span id="file_code"></span><br>
-                </form>
-            </div>
-            <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-    </div>
-        </div>
-    </div>
-</div>
-
+<#--file del-->
 <div class="modal fade" tabindex="-1" role="dialog" id="file_del_modal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -160,25 +118,8 @@
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
+<script src="/js/upload.js"></script>
 <script>
-    function file_share(fileName) {
-        $.ajax({
-            url:'/v1/file/'+fileName+'/share',
-            // dataType:'json',
-            type:'POST',
-            success: function (data) {
-                var json = JSON.parse(data);
-                $("#file_name").text(json.fileName);
-                $("#file_site").text("http://127.0.0.1/file/"+json.username+"/"+json.fileName);
-                $("#file_code").text(json.code);
-                $("#file_share_modal").modal('show');
-            },
-            error: function (data) {
-                alert("error"+data)
-            }
-        })
-    }
-
     function file_del(fileName) {
         $.ajax({
             url:'/v1/file/'+fileName+'/del',
@@ -191,33 +132,6 @@
                 alert("error"+data)
             }
         })
-    }
-
-    function checkAll() {
-        var v_item = document.getElementsByName('checkboxAll');
-        var items = document.getElementsByName('checkbox');
-        for (var i = 0; i < items.length; ++i) {
-            if (v_item[0].checked) {
-                items[i].checked = true;
-            }
-            else {
-                items[i].checked = false;
-            }
-        }
-    }
-
-    function files_download() {
-        var items = document.getElementsByName('checkbox');
-        for (var i = 0; i < items.length; ++i) {
-            if (items[i].checked === true) {
-                var fileName = items[i].value;
-                var url = '/v1/file?fileName='+fileName+'';
-                var a = document.createElement('a');
-                a.href=url;
-                a.download = fileName;
-                a.click()
-            }
-        }
     }
 
     function refresh() {

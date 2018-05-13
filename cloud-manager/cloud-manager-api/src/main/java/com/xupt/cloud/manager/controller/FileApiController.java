@@ -6,7 +6,6 @@ import com.xupt.cloud.manager.common.ManagerApiConstants;
 import com.xupt.cloud.manager.domain.MyFile;
 import com.xupt.cloud.manager.domain.query.FileQuery;
 import com.xupt.cloud.manager.domain.vo.FileShare;
-import com.xupt.cloud.manager.domain.vo.User;
 import com.xupt.cloud.manager.service.FileServiceApi;
 import com.xupt.cloud.manager.service.ShareServiceApi;
 import org.apache.commons.lang.StringUtils;
@@ -86,7 +85,8 @@ public class FileApiController {
             fileQuery.setPn(pn);
             fileQuery.setPageSize(ps);
             fileQuery.setNeedPage(true);
-            fileQuery.setUsername((String)request.getSession().getAttribute("username"));
+//            fileQuery.setUsername((String)request.getSession().getAttribute("username"));
+            fileQuery.setUsername(userName);
             String response = fileServiceApi.getFilePageByQuery(JSONUtils.toJSON(fileQuery));
             CopyOnWriteArrayList<com.xupt.cloud.manager.domain.vo.File> fileList = JSONUtils.fromJson(response,new TypeReference<CopyOnWriteArrayList<com.xupt.cloud.manager.domain.vo.File>>() {});
 
@@ -97,14 +97,14 @@ public class FileApiController {
                         LOGGER.info(fbb.getFileType()+"---"+fileType);
                         fileList.remove(fbb);
                     }
-//                    if("others".equals(fileType))
-//                        if (fbb.getFileType().startsWith("text") || fbb.getFileType().startsWith("video")|| fbb.getFileType().startsWith("audio")|| fbb.getFileType().startsWith("application")|| fbb.getFileType().startsWith("image"))
-//                            fileList.remove(fbb);
                 }
             }
             LOGGER.info("size after:"+fileList.size());
 
             model.addAttribute("fileList", fileList);
+            if(StringUtils.isNotBlank((String) request.getSession().getAttribute("managerName"))){
+                return "managerFileList";
+            }
             return "fileList";
         }catch(Exception e){
             LOGGER.error("get file list error", e);
@@ -146,7 +146,7 @@ public class FileApiController {
                 out.write(b,0,len);
             }
             in.close();
-            out.write("下载成功".getBytes("UTF-8"));
+//            out.write("下载成功".getBytes("UTF-8"));
         }catch(Exception e){
             LOGGER.error("download file error", e);
             return ;
@@ -174,7 +174,6 @@ public class FileApiController {
             fileShare.setUsername(username);
             LOGGER.info(JSONUtils.toJSON(fileShare));
             String fileShareJSON = shareServiceApi.shareFile(JSONUtils.toJSON(fileShare));
-//            FileShare fileShareRe = JSONUtils.fromJson(fileShareJSON, FileShare.class);
             LOGGER.info(fileShareJSON);
             return fileShareJSON;
         }catch(Exception e){
@@ -188,26 +187,34 @@ public class FileApiController {
      * @return
      */
     @RequestMapping(value = "/file/{userName}/{fileName}/share", method = RequestMethod.GET)
-    public String fileShareDownload(HttpServletResponse response,
+    public void fileShareDownload(HttpServletResponse response,
                                     @PathVariable String userName,
                                     @PathVariable String fileName,
                                     @RequestParam(value = "code") String code){
         try {
+            LOGGER.info("success into file share controller!");
             //1.检测code是否正确
             FileShare fileShare = new FileShare();
             fileShare.setUsername(userName);
             fileShare.setFileName(fileName);
             FileShare fileShareQuery = JSONUtils.fromJson(shareServiceApi.findShareFile(JSONUtils.toJSON(fileShare)), FileShare.class);
             if (Objects.isNull(fileShareQuery)) {
-                return "fileNotFind";
+                LOGGER.info("file not find!");
+                return;
             }
             if (StringUtils.contains(code, fileShareQuery.getCode())) {
+                LOGGER.info("into download");
                 //2.进行下载
                 OutputStream out = response.getOutputStream();
                 response.setContentType("text/html;charset=UTF-8");
-                File file = new File(fileShareQuery.getRealPath() + "/" + fileShareQuery.getFileName());
+                String pathGet = "\\";
+                String pathBase = "D:\\usr";
+                String path = pathBase + pathGet + fileName;
+                LOGGER.info("path"+path);
+                File file = new File(path);
                 if (!(file.exists())) {
-                    return "";
+                    LOGGER.info("file not exists"+ path);
+                    return;
                 }
                 InputStream in = new FileInputStream(file);
                 response.setHeader("Content-Disposition", "attachment;filename=" + URLEncoder.encode(fileShareQuery.getFileName(), "UTF-8"));
@@ -217,16 +224,22 @@ public class FileApiController {
                     out.write(b, 0, len);
                 }
                 in.close();
-                return "";
+                LOGGER.info("file download success");
             } else {
-                return "codeError";
+                return;
             }
         }catch(Exception e){
             LOGGER.error("share download fail");
-            return "";
+            return;
         }
     }
 
+    /**
+     * 资源删除
+     * @param fileName
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/file/{fileName}/del", method = RequestMethod.GET)
     @ResponseBody
     public String delFile(@PathVariable String fileName, HttpServletRequest request){
@@ -242,6 +255,20 @@ public class FileApiController {
         }catch(Exception e){
             LOGGER.error("file del fail", e);
             return "";
+        }
+    }
+
+    @RequestMapping(value = "/{username}/shares", method = RequestMethod.GET)
+    public String shareList(@PathVariable String username, HttpServletRequest request, Model model) {
+        try{
+            LOGGER.info("success into share list");
+            String fileShareBean = shareServiceApi.listShare(username);
+            List<FileShare> fileShares = JSONUtils.fromJson(fileShareBean, new TypeReference<List<FileShare>>() {});
+            model.addAttribute("fileShares", fileShares);
+            return "shareList";
+        }catch( Exception e){
+            LOGGER.info("share list get error");
+            return "index";
         }
     }
 

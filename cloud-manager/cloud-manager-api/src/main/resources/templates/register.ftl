@@ -11,7 +11,7 @@
     <title>校园云平台</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
@@ -34,23 +34,23 @@
 <body>
 <div class="container">
     <ul class="nav nav-pills">
-        <li role="presentation"><a href="/v1/">User</a></li>
-        <li role="presentation"><a href="/v1/manager">Manager</a></li>
-        <li role="presentation" class="active"><a href="/v1/user/register">Register</a></li>
+        <li role="presentation"><a href="/v1/">用户</a></li>
+        <li role="presentation"><a href="/v1/manager">管理员</a></li>
+        <li role="presentation" class="active"><a href="/v1/user/register">注册</a></li>
     </ul>
 
     <form action="/v1/register" class="form-signin" method="post">
-        <h2 class="form-signin-heading">CLOUD REGISTER</h2>
-        <label for="Username" class="sr-only">Username</label>
-            <input type="text" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
-        <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <label for="Email" class="sr-only">Email</label>
-            <input type="text" name="email" id="Email" class="form-control" placeholder="Email" required>
-        <label for="Phone" class="sr-only">Phone</label>
-            <input type="text" name="phone" id="Phone" class="form-control" placeholder="Phone" required>
+        <h2 class="form-signin-heading">注册</h2>
+        <label for="Username" class="sr-only">用户名</label>
+            <input type="text" name="username" id="username" class="form-control" placeholder="请输入用户名" required autofocus>
+        <label for="inputPassword" class="sr-only">密码</label>
+            <input type="password" name="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
+        <label for="Email" class="sr-only">邮箱</label>
+            <input type="text" name="email" id="Email" class="form-control" placeholder="请输入邮箱" required>
+        <label for="Phone" class="sr-only">手机</label>
+            <input type="text" name="phone" id="Phone" class="form-control" placeholder="请输入手机号码" required>
 
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button>
     </form>
 
 </div> <!-- /container -->

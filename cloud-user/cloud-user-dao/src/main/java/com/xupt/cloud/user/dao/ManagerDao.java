@@ -26,11 +26,11 @@ public class ManagerDao {
 
     /**
      *
-     * @param managername
+     * @param managerName
      * @return
      */
-    public Manager selectByName(final String managername){
-        Query query = new Query(Criteria.where("managername").is(managername));
+    public Manager selectByName(final String managerName){
+        Query query = new Query(Criteria.where("managerName").is(managerName));
         return cloudMongoTemplate.findOne(query, Manager.class, collectionName);
     }
 

@@ -7,7 +7,7 @@
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>用户空间</title>
+    <title>管理员</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
@@ -46,21 +46,8 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="/v1/home">用户主页 </a></li>
-                    <li><a href="/v1/myFile">资源上传 </a></li>
-                    <li><a href="/v1/${Session['username']}/shares">我的分享</a></li>
-                    <li class="dropdown">
-                        <a href="/v1/file/${Session["username"]}/list" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的资源 <span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="/v1/file/${Session["username"]}/list">全部</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=text">文档</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=video">视频</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=audio">音乐</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=application">文档</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=image">图片</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=others">其他</a></li>
-                        </ul>
-                    </li>
+                    <li class="active"><a href="/v1/home">管理员主页 </a></li>
+                    <li><a href="/v1/user/list">资源管理 </a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>

@@ -5,6 +5,7 @@ import com.xupt.cloud.user.dto.UserDTO;
 import com.xupt.cloud.user.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -45,4 +46,11 @@ public class UserService {
         return userDao.insert(user);
     }
 
+    /**
+     * list user
+     * @return
+     */
+    public List<User> listUser() {
+        return userDao.selectAll();
+    }
 }

@@ -11,12 +11,10 @@
     <title>用户空间</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <link href="/css/fileinput-rtl.css" rel="stylesheet">
-    <link href="/css/fileinput.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/css/navbar.css" rel="stylesheet">
@@ -50,17 +48,17 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="/v1/home">用户主页</a></li>
-                    <li class="active"><a href="/v1/myFile">资源上传</a></li>
+                    <li><a href="/v1/myFile">资源上传</a></li>
                     <li><a href="/v1/${Session['username']}/shares">我的分享</a></li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的资源 <span class="caret"></span></a>
+                        <a href="/v1/file/${Session["username"]}/list" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的资源 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="/v1/file/${Session["username"]}/list">全部</a></li>
-                            <li><a href="/v1/file/${Session["username"]}/list?fileType=text">文档</a></li>
                             <li><a href="/v1/file/${Session["username"]}/list?fileType=video">视频</a></li>
                             <li><a href="/v1/file/${Session["username"]}/list?fileType=audio">音乐</a></li>
                             <li><a href="/v1/file/${Session["username"]}/list?fileType=application">文档</a></li>
                             <li><a href="/v1/file/${Session["username"]}/list?fileType=image">图片</a></li>
+                            <li><a href="/v1/file/${Session["username"]}/list?fileType=text">文本</a></li>
                             <li><a href="/v1/file/${Session["username"]}/list?fileType=others">其他</a></li>
                         </ul>
                     </li>
@@ -76,51 +74,52 @@
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
-        <p>资源上传.</p>
+        <p>资源列表.</p>
     <#--<p>-->
     <#--<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>-->
     <#--</p>-->
-        <div id="progressBar" style='height: 20px;boder:2px solid green'>
-            <div id='bar' style='height: 100%;background:#33dd33;width: 0%'>
-            </div>
-        </div>
-        <form>
-            <input type="file" id="files" name="files" multiple="multiple"/>
-            <output id="selectedFiles"></output>
-            <input id="uploadButton" type="button" class="btn btn-info" value="上传"/>
-        </form>
-        <#--<div id='debug' style='height: 100px;border: 2px solid green;overflow: auto;'>-->
-        <div id='debug' class="jumbotron" style='height: 100px;overflow: auto;'>
-        </div>
-    </div>
-    <br><br>
-    <div class="jumbotron">
-        <div class="file-input file-input-ajax-new">
-            <div class="file-preview ">
-                <div class=" file-drop-zone"><div class="file-drop-zone-title">Drag &amp; drop files here …</div>
-                    <div class="file-preview-thumbnails">
-                    </div>
-                    <div class="clearfix"></div>    <div class="file-preview-status text-center text-success"></div>
-                    <div class="kv-fileinput-error file-error-message" style="display: none;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="input-group file-caption-main">
-            <div class="file-caption form-control kv-fileinput-caption" tabindex="500">
-                <span class="file-caption-icon"></span>
-                <input class="file-caption-name" onkeydown="return false;" onpaste="return false;" placeholder="Select files...">
-            </div>
-            <div class="input-group-btn input-group-append">
-                <form>
-                    <button id="uploadButton" type="submit" tabindex="500" title="Upload selected files" class="btn btn-default btn-secondary fileinput-upload fileinput-upload-button"><i class="glyphicon glyphicon-upload"></i>  <span class="hidden-xs">Upload</span></button>
-                    <div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;  <span class="hidden-xs">Browse …</span><input type="file" class="file" id="files" name="files" multiple="multiple" data-min-file-count="3" value="Browse ..."/></div>
-                </form>
-            </div>
+        <div class="center-block">
+            <table class="table table-hover">
+                <tr>
+                    <th>文件名</th>
+                    <#--<td>文件路径</td>-->
+                    <th>分享用户</th>
+                    <th>提取码</th>
+                    <th>地址</th>
+                    <th>操作</th>
+                </tr>
+            <#list fileShares as item>
+                <tr>
+                    <td>${item.fileName!}</td>
+                    <#--<td>${item.filePatd!}</td>-->
+                    <td>${item.username!}</td>
+                    <td>${item.code!}</td>
+                    <td>${item.shareWebsite!}</td>
+                    <#--<td><a class="btn btn-info" href="/v1/share/${Session["username"]}/${item.fileName!}">分享</a></td>-->
+                    <td><button class="btn btn-danger" onclick="file_del('${item.fileName!}')">删除</button></td>
+                </tr>
+            </#list>
+            </table>
         </div>
     </div>
 
 </div> <!-- /container -->
+
+<#--file del-->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="file_del_modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" onclick="refresh()" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">文件删除成功</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="refresh()" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 <!-- Bootstrap core JavaScript
@@ -131,7 +130,44 @@
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="/js/upload.js"></script>
-<script src="../static/js/fileinput.js"></script>
+<script>
+    function file_share(fileName) {
+        $.ajax({
+            url:'/v1/file/'+fileName+'/share',
+            // dataType:'json',
+            type:'POST',
+            success: function (data) {
+                var json = JSON.parse(data);
+                $("#file_name").text(json.fileName);
+                $("#file_site").text("http://127.0.0.1/file/"+json.username+"/"+json.fileName);
+                $("#file_code").text(json.code);
+                $("#file_share_modal").modal('show');
+            },
+            error: function (data) {
+                alert("error"+data)
+            }
+        })
+    }
+
+    function file_del(fileName) {
+        $.ajax({
+            url:'/v1/file/'+fileName+'/del',
+            dataType:'json',
+            type:'GET',
+            success: function (data) {
+                $("#file_del_modal").modal('show');
+            },
+            error: function (data) {
+                alert("error"+data)
+            }
+        })
+    }
+
+
+
+    function refresh() {
+        window.location.reload();
+    }
+</script>
 </body>
 </html>

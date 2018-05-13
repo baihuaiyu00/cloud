@@ -4,6 +4,8 @@ import com.xupt.cloud.share.dao.FileShareDao;
 import com.xupt.cloud.share.domain.entity.FileShare;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 /**
  * Created by baihuaiyu on 2018/5/8
  */
@@ -20,5 +22,9 @@ public class FileShareService {
     public FileShare findShare(FileShare fileShare) {
         return fileShareDao.findByName(fileShare);
 
+    }
+
+    public List<FileShare> listShare(String username) {
+        return fileShareDao.findAll(username);
     }
 }

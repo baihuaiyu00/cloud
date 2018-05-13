@@ -1,9 +1,12 @@
 package com.xupt.cloud.share.dao;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.xupt.cloud.share.domain.entity.FileShare;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
+
+import java.util.List;
 
 /**
  * Created by baihuaiyu on 2018/5/8
@@ -34,6 +37,13 @@ public class FileShareDao {
         mongoQuery.addCriteria(Criteria.where("username").is(fileShare.getUsername()));
         mongoQuery.addCriteria(Criteria.where("fileName").is(fileShare.getFileName()));
         return cloudMongoTemplate.findOne(mongoQuery, FileShare.class, collectionName);
+    }
+
+
+    public List<FileShare> findAll(String username) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("username").is(username));
+        return cloudMongoTemplate.find(query, FileShare.class, collectionName);
     }
 
     public void setCollectionName(String collectionName) {

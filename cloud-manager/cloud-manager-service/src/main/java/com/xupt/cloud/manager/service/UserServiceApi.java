@@ -21,4 +21,7 @@ public interface UserServiceApi {
 
     @RequestMapping(value = "/v1/manager/login", method = RequestMethod.POST)
     String managerLogin(@RequestBody Manager manager);
+
+    @RequestMapping(value = "/v1/user/list", method = RequestMethod.GET)
+    String userList();
 }

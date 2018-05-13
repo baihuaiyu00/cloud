@@ -6,7 +6,7 @@ import com.xupt.cloud.common.util.IReplyMsg;
 public enum FileShareApiReplyMsg implements IReplyMsg {
 
     FILE_SHARE_SUCCESS("file share success"),
-    FILE_SHARE_FAIL("file share fail");
+    FILE_SHARE_FAIL("file share fail"), SHARE_LIST_ERROR("share list error");
 
     private String msg;
 

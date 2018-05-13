@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import java.util.List;
+
 /**
  * Created by baihuaiyu on 2018/5/2
  */
@@ -25,13 +27,21 @@ public class UserDao {
 
 
     /**
-     *
+     * select By NAME
      * @param username
      * @return
      */
     public User selectByName(final String username){
         Query query = new Query(Criteria.where("username").is(username));
         return cloudMongoTemplate.findOne(query, User.class, collectionName);
+    }
+
+    /**
+     * select All
+     * @return
+     */
+    public List<User> selectAll() {
+        return cloudMongoTemplate.findAll(User.class, collectionName);
     }
 
     public void setCollectionName(String collectionName) {
@@ -41,4 +51,5 @@ public class UserDao {
     public void setCloudMongoTemplate(MongoTemplate cloudMongoTemplate) {
         this.cloudMongoTemplate = cloudMongoTemplate;
     }
+
 }

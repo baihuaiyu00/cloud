@@ -9,14 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>cloud-share</artifactId>
-    <packaging>pom</packaging>
-    <modules>
-        <module>cloud-share-api</module>
-        <module>cloud-share-service</module>
-        <module>cloud-share-domain</module>
-        <module>cloud-share-dao</module>
-    </modules>
+    <artifactId>cloud-zuul</artifactId>
 
 
 </project>

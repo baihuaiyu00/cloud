@@ -37,7 +37,7 @@ public class IndexApiController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "myFile", method = RequestMethod.GET)
+    @RequestMapping(value = "/myFile", method = RequestMethod.GET)
     public String filePage(HttpServletRequest request){
         if(Objects.isNull(request.getSession().getAttribute("username"))){
             return "index";
@@ -53,11 +53,8 @@ public class IndexApiController {
      * @param request
      * @return
      */
-    @RequestMapping(value = "share/{userName}/{fileName}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{userName}/{fileName}/share", method = RequestMethod.GET)
     public String shareFileDownload(@PathVariable String userName, @PathVariable String fileName, HttpServletRequest request){
-        if(Objects.isNull(request.getSession().getAttribute("username"))){
-            return "index";
-        }
         request.setAttribute("userName", userName);
         request.setAttribute("fileName", fileName);
         LOGGER.info("request fore share-file download");
@@ -79,14 +76,13 @@ public class IndexApiController {
     }
 
     @RequestMapping(value = "/manager", method = RequestMethod.GET)
-    public String managerIndex(){
-        LOGGER.info("request for manager login index");
+    public String managerIndex(HttpServletRequest request){
+        LOGGER.info("request for userHome");
         return "manager";
     }
 
-    @RequestMapping(value = "/user/register", method = RequestMethod.GET)
-    public String registerIndex(){
-        LOGGER.info("request for user register index");
+    @RequestMapping(value = "/user/register" ,method = RequestMethod.GET)
+    public String userRegister(){
         return "register";
     }
 
