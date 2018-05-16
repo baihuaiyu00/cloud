@@ -15,8 +15,8 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-    <link href="/css/fileinput-rtl.css" rel="stylesheet">
-    <link href="/css/fileinput.css" rel="stylesheet">
+    <link href="/fileinput/fileinput.min.css" rel="stylesheet">
+    <link href="/fileinput/fileinput.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/css/navbar.css" rel="stylesheet">
@@ -132,6 +132,7 @@
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
 <script src="/js/upload.js"></script>
-<script src="../static/js/fileinput.js"></script>
+<script src="/fileinput/js/fileinput.js"></script>
+<script src="/fileinput/js/fileinput.min.js"></script>
 </body>
 </html>
