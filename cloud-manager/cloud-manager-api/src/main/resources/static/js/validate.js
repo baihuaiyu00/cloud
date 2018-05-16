@@ -35,13 +35,14 @@ window.onload = function() {
         　　changedTouches：表示自上次触摸以来发生了什么改变的Touch对象的数组。
             */
             var left = (event.clientX || event.changedTouches[0].clientX) - dragHandler.clientWidth / 2;
-            if(left < 0) {
-                left = 0;
-            } else if(left > maxHandlerOffset) {
-                left = maxHandlerOffset;
+            if(left < 533) {
+                left = 533;
+            } else if(left > 790) {
+                left = 790;
                 verifySucc();
             }
-            dragHandler.style.left = left + "px";
+            dragHandler.style.left = (left-296*2+50) + "px";
+            console.log(left);
             dragBg.style.width = dragHandler.style.left;
         }
         function onDragHandlerMouseUp(event) {
