@@ -18,6 +18,7 @@
 
     <!-- Custom styles for this template -->
     <link href="/css/navbar.css" rel="stylesheet">
+    <link href="/css/checkbox.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <script src="/assets/js/ie-emulation-modes-warning.js"></script>
@@ -43,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">校园云平台</a>
+                <a class="navbar-brand" href="#">校园资源共享平台</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -76,6 +77,7 @@
     <div class="jumbotron">
         <p>资源列表.</p><br>
         <button style="align:right" class="btn btn-info" onclick="files_download()">批量下载</button>
+        <hr>
 
     <#--<p>-->
     <#--<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>-->
@@ -83,21 +85,29 @@
         <div class="center-block">
             <table class="table table-hover">
                 <tr>
-                    <th><label>
-                        <input type="checkbox" name="checkboxAll" value="checkboxAll" onclick="checkAll()">
+                    <#--<th><label>-->
+                        <#--<input type="checkbox" name="checkboxAll" value="checkboxAll" onclick="checkAll()">-->
+                    <#--</label></th>-->
+                    <th><label class="my_protocol">
+                        <input class="input_agreement_protocol" type="checkbox" name="checkboxAll" onclick="checkAll()"/>
+                        <span></span>
                     </label></th>
                     <th>文件名</th>
                     <#--<td>文件路径</td>-->
-                    <th>大小</th>
+                    <th>大小/kb</th>
                     <th>文件类型</th>
                     <th>文件上传时间</th>
                     <th colspan="3">操作</th>
                 </tr>
             <#list fileList as item>
                 <tr>
-                    <td><label>
-                        <input type="checkbox" name="checkbox" id="checkbox" value="${item.fileName!}">
-                    </label></td>
+                    <#--<td><label>-->
+                        <#--<input type="checkbox" name="checkbox" id="checkbox" value="${item.fileName!}">-->
+                    <#--</label></td>-->
+                    <th><label class="my_protocol">
+                        <input class="input_agreement_protocol" type="checkbox" name="checkbox" value="${item.fileName!}"/>
+                        <span></span>
+                    </label></th>
                     <td>${item.fileName!}</td>
                     <#--<td>${item.filePatd!}</td>-->
                     <td>${item.fileSize!}</td>

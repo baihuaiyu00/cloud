@@ -33,14 +33,14 @@ public class FileApiController {
     private FileService fileService;
 
     @RequestMapping(value = "/file", method = RequestMethod.POST)
-    public ResponseEntity addFile(MultipartFile multipartFile, @RequestParam(value = "username") String username, HttpServletRequest request){
+    public ResponseEntity addFile(@RequestParam("myFile") MultipartFile multipartFile, @RequestParam(value = "username") String username, HttpServletRequest request){
         LOGGER.info("success into SERVICE-FILE");
-        String pathGet = "\\\\";
-        String pathBase = "D:\\usr";
-        String path = pathBase+pathGet;
-        String fileName = multipartFile.getOriginalFilename();
-//        String username = (String) request.getSession().getAttribute("username");
         try {
+            String pathGet = "\\\\";
+            String pathBase = "D:\\usr";
+            String path = pathBase+pathGet;
+            String fileName = multipartFile.getOriginalFilename();
+    //        String username = (String) request.getSession().getAttribute("username");
             //1.file upload to mongoDB
             fileService.addFile(multipartFile, path, username);
             //2.file upload to disk

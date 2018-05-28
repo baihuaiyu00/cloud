@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>校园云平台</title>
+    <title>校园资源共享平台</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
@@ -34,12 +34,14 @@
 <body>
 <div class="container">
     <form action="/v1/file/${userName!}/${fileName!}/share" class="form-signin" method="get">
-        <h2 class="form-signin-heading">SHARE DOWNLOAD</h2>
-        <span>分享用户名称:${userName!}</span>
-        <span>分享文件名称:${fileName!}</span>
+        <h2 class="form-signin-heading">分享资源下载</h2><hr>
+        <blockquote>
+            <span><p>分享用户名称:${userName!}</p></span><br>
+            <span><p>分享文件名称:${fileName!}</p></span>
+        </blockquote>
         <label for="inputCode" class="sr-only">Password</label>
-        <input type="text" name="code" id="inputCode" class="form-control" placeholder="Code" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Download</button>
+        <input type="text" name="code" id="inputCode" class="form-control" placeholder="请输入提取码" required><br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">下载</button>
     </form>
 
 </div> <!-- /container -->

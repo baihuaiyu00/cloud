@@ -11,15 +11,10 @@ server:
 spring:
   application:
     name: service-manager
-  #��̬��Դӳ��
-#  mvc:
-#    static-path-pattern: static/**
-#  resources:
-#    static-locations: classpath:/static/
-#  http:
-#    multipart:
-#      max-file-size: 512Mb
-#      max-request-size: 512Mb
+  http:
+    multipart:
+      max-file-size: 6000Mb
+      max-request-size: 6000Mb
 
 feign:
   okhttp:

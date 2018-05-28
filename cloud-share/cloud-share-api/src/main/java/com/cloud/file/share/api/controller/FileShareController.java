@@ -33,6 +33,7 @@ public class FileShareController {
      * @param fileShare
      * @return
      */
+    //TODO 管理员用户管理...
     @RequestMapping(value = "/file/share", method = RequestMethod.POST)
     public ResponseEntity shareFile(@RequestParam(value = "fileShare") String fileShare, HttpServletRequest request){
         try {
@@ -40,9 +41,8 @@ public class FileShareController {
             Random r = new Random();
             String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             String code = String.valueOf(r.nextInt(10)) + chars.charAt((int) (Math.random() * 26)) + String.valueOf(r.nextInt(10)) + chars.charAt((int) (Math.random() * 26)) + "";
-            String shareWebsite = code;
             fileShareBean.setCode(code);
-            fileShareBean.setShareWebsite(request.getContextPath()+shareWebsite);
+            fileShareBean.setShareWebsite("http://localhost:8082/v1/"+fileShareBean.getUsername()+"/"+fileShareBean.getFileName()+"/share");
 
             fileShareService.addShare(fileShareBean);
             return Replys.success(fileShareBean);

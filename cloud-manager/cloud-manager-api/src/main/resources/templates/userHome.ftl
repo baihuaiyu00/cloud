@@ -23,6 +23,8 @@
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
+
+
     <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <![endif]-->
@@ -31,6 +33,7 @@
 <body>
 
 <div class="container">
+
 
     <!-- Static navbar -->
     <nav class="navbar navbar-default">
@@ -42,7 +45,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">校园云平台</a>
+                <a class="navbar-brand" href="#">校园资源共享平台</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">

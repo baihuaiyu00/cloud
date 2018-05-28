@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">校园云平台</a>
+                <a class="navbar-brand" href="#">校园资源共享平台</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -72,7 +72,7 @@
                 <tr>
                     <th>文件名</th>
                     <#--<td>文件路径</td>-->
-                    <th>大小</th>
+                    <th>大小kb</th>
                     <th>文件类型</th>
                     <th>文件上传时间</th>
                     <th colspan="2">操作</th>

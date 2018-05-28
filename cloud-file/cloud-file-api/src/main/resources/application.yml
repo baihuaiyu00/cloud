@@ -7,14 +7,14 @@ eureka:
     preferIpAddress: true
 server:
 #  port: @server.port@
-  port: 8083
+  port: 8073
 spring:
   application:
     name: service-file
   http:
     multipart:
-      max-file-size: 512Mb
-      max-request-size: 512Mb
+      max-file-size: 6000Mb
+      max-request-size: 6000Mb
 
 feign:
   okhttp:

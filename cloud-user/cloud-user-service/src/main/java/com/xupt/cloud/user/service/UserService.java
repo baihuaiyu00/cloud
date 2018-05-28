@@ -1,5 +1,6 @@
 package com.xupt.cloud.user.service;
 
+import com.xupt.cloud.common.util.MD5Util;
 import com.xupt.cloud.user.dao.UserDao;
 import com.xupt.cloud.user.dto.UserDTO;
 import com.xupt.cloud.user.entity.User;
@@ -27,10 +28,11 @@ public class UserService {
             return false;
         }
         String passwordBefore = userBean.getPassword();
+        String passwordInput = MD5Util.encoder(user.getPassword());
         if(passwordBefore == null || "".equals(passwordBefore)){
             return false;
         }
-        if(passwordBefore.equals(user.getPassword())) {
+        if(passwordBefore.equals(passwordInput)) {
             return true;
         }else{
             return false;
@@ -43,6 +45,7 @@ public class UserService {
      * @return
      */
     public User addUser(final User user) {
+        user.setPassword(MD5Util.encoder(user.getPassword()));
         return userDao.insert(user);
     }
 

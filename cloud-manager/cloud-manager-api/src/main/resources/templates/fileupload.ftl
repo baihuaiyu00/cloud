@@ -29,6 +29,27 @@
     <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <![endif]-->
+    <style>
+        /* layout.css Style */
+        .upload-drop-zone {
+            height: 200px;
+            border-width: 2px;
+            margin-bottom: 20px;
+        }
+
+        /* skin.css Style*/
+        .upload-drop-zone {
+            color: #ccc;
+            border-style: dashed;
+            border-color: #ccc;
+            line-height: 200px;
+            text-align: center
+        }
+        .upload-drop-zone.drop {
+            color: #222;
+            border-color: #222;
+        }
+    </style>
 </head>
 
 <body>
@@ -45,7 +66,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">校园云平台</a>
+                <a class="navbar-brand" href="#">校园资源共享平台</a>
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -77,47 +98,12 @@
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron">
         <p>资源上传.</p>
-    <#--<p>-->
-    <#--<a class="btn btn-lg btn-primary" href="../../components/#navbar" role="button">View navbar docs &raquo;</a>-->
-    <#--</p>-->
-        <div id="progressBar" style='height: 20px;boder:2px solid green'>
-            <div id='bar' style='height: 100%;background:#33dd33;width: 0%'>
+        <#--<div class="form-group">-->
+            <div>
+                <input id="myFile" type="file" name="myFile" class="fileloading">
             </div>
-        </div>
-        <form>
-            <input type="file" id="files" name="files" multiple="multiple"/>
-            <output id="selectedFiles"></output>
-            <input id="uploadButton" type="button" class="btn btn-info" value="上传"/>
-        </form>
-        <#--<div id='debug' style='height: 100px;border: 2px solid green;overflow: auto;'>-->
-        <div id='debug' class="jumbotron" style='height: 100px;overflow: auto;'>
-        </div>
-    </div>
-    <br><br>
-    <div class="jumbotron">
-        <div class="file-input file-input-ajax-new">
-            <div class="file-preview ">
-                <div class=" file-drop-zone"><div class="file-drop-zone-title">Drag &amp; drop files here …</div>
-                    <div class="file-preview-thumbnails">
-                    </div>
-                    <div class="clearfix"></div>    <div class="file-preview-status text-center text-success"></div>
-                    <div class="kv-fileinput-error file-error-message" style="display: none;"></div>
-                </div>
-            </div>
-        </div>
-        <div class="clearfix"></div>
-        <div class="input-group file-caption-main">
-            <div class="file-caption form-control kv-fileinput-caption" tabindex="500">
-                <span class="file-caption-icon"></span>
-                <input class="file-caption-name" onkeydown="return false;" onpaste="return false;" placeholder="Select files...">
-            </div>
-            <div class="input-group-btn input-group-append">
-                <form>
-                    <button id="uploadButton" type="submit" tabindex="500" title="Upload selected files" class="btn btn-default btn-secondary fileinput-upload fileinput-upload-button"><i class="glyphicon glyphicon-upload"></i>  <span class="hidden-xs">Upload</span></button>
-                    <div tabindex="500" class="btn btn-primary btn-file"><i class="glyphicon glyphicon-folder-open"></i>&nbsp;  <span class="hidden-xs">Browse …</span><input type="file" class="file" id="files" name="files" multiple="multiple" data-min-file-count="3" value="Browse ..."/></div>
-                </form>
-            </div>
-        </div>
+            <input type="hidden" name="logo" id="logo">
+        <#--</div>-->
     </div>
 
 </div> <!-- /container -->
@@ -131,8 +117,24 @@
 <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="/js/upload.js"></script>
-<script src="/fileinput/js/fileinput.js"></script>
-<script src="/fileinput/js/fileinput.min.js"></script>
+<#--<script src="/js/upload.js"></script>-->
+<script src="/fileinput/fileinput.js"></script>
+<script src="/fileinput/fileinput.min.js"></script>
+<script>
+    $("#myFile").fileinput({
+        language : 'zh-CN',
+        uploadUrl : "file",
+        autoReplace : true,
+        showClose: false,
+        maxFileSize: 1000000000,
+        maxFileCount : 6,
+        browseClass : "btn btn-primary", //按钮样式
+        previewFileIcon : "<i class='glyphicon glyphicon-king'></i>"
+    }).on("fileuploaded", function(e, data) {
+        var res = data.response;
+        alert("上传成功");
+        $("#logo").attr("value", res);
+    })
+</script>
 </body>
 </html>

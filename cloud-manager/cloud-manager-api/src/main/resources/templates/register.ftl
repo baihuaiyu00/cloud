@@ -8,13 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>校园云平台</title>
+    <title>校园资源共享平台</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="/assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="/css/canvas.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
@@ -32,6 +33,7 @@
 </head>
 
 <body>
+<canvas id="canvas"></canvas>
 <div class="container">
     <ul class="nav nav-pills">
         <li role="presentation"><a href="/v1/">用户</a></li>
@@ -55,6 +57,7 @@
 
 </div> <!-- /container -->
 
+<script src="/js/canvas.js"></script>
 
 <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>

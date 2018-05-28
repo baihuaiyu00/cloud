@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -46,17 +47,19 @@ public class FileApiController {
     /**
      * 上传资源
      * @param request
-     * @param file
+     * @param myFile
      */
+    @ResponseBody
     @RequestMapping(value = "file", method = RequestMethod.POST)
-    public void addFile(HttpServletRequest request, MyFile file){
-        LOGGER.info("myFile:"+file);
+    public String addFile(HttpServletRequest request, @RequestParam("myFile") MultipartFile myFile){
+        LOGGER.info("myFile:"+myFile);
         try {
 
             LOGGER.info("success into file upload controller");
-            fileServiceApi.addFile(file.getMultipartFile(), (String)request.getSession().getAttribute("username"));
+            return fileServiceApi.addFile(myFile, (String)request.getSession().getAttribute("username"));
         }catch (Exception e){
             LOGGER.info("upload file fail", e);
+            return "error";
         }
     }
 

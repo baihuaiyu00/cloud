@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>校园云平台</title>
+    <title>校园资源共享平台</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../static/bootstrap-3.3.7-dist/js/bootstrap.min.js" rel="stylesheet">

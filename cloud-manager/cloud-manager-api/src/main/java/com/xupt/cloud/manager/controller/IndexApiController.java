@@ -44,6 +44,7 @@ public class IndexApiController {
         }
         LOGGER.info("request for file upload");
         return "fileupload";
+//        return "fileupload2";
     }
 
     /**
