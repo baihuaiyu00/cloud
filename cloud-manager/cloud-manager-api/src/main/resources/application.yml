@@ -7,7 +7,7 @@ eureka:
     preferIpAddress: true
 server:
 #  port: @server.port@
-  port: 8082
+  port: 8072
 spring:
   application:
     name: service-manager

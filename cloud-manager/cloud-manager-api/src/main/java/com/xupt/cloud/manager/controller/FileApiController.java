@@ -142,7 +142,8 @@ public class FileApiController {
             }
 
             InputStream in = new FileInputStream(file);
-            response.setHeader("Content-Disposition", "attachment;filename="+ URLEncoder.encode(fileName,"UTF-8"));
+            response.setHeader("Content-Disposition",
+                    "attachment;filename="+ URLEncoder.encode(fileName,"UTF-8"));
             byte b[] = new byte[1024];
             int len = -1;
             while((len=in.read(b))!=-1){

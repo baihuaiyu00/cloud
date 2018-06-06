@@ -28,7 +28,7 @@
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <!--<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>-->
-    <#--<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>-->
+<#--<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>-->
     <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     <![endif]-->
@@ -39,32 +39,21 @@
 <canvas id="canvas"></canvas>
 <div class="container">
     <ul class="nav nav-pills">
-        <li role="presentation" class="active"><a href="/v1/">用户</a></li>
+        <li role="presentation"><a href="/v1/">用户</a></li>
         <li role="presentation"><a href="/v1/manager">管理员</a></li>
         <li role="presentation"><a href="/v1/user/register">注册</a></li>
-        <li role="presentation"><a href="/v1/pwdForget">忘记密码</a></li>
+        <li role="presentation" class="active"><a href="/v1/user/password">忘记密码</a></li>
     </ul>
 
-    <form action="/v1/login" class="form-signin" method="post">
-        <h2 class="form-signin-heading">校园资源共享平台</h2>
-        <span style="color: red;size: 12px">${info!}</span>
-        <label for="Username" class="sr-only">用户名</label>
-        <input type="text" name="username" id="username" class="form-control" placeholder="请输入用户名" required autofocus>
-        <label for="inputPassword" class="sr-only">密码</label>
-        <input type="password" name="password" id="inputPassword" class="form-control" placeholder="请输入密码" required>
-        <div id="dragContainer">
-            <div id="dragBg"></div>
-            <div id="dragText"></div>
-            <div id="dragHandler" class="dragHandlerBg"></div>
-        </div>
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="remember-me"> 记住我
-            </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" id="login_btn" type="submit" disabled>登录</button>
-    </form>
-
+        <form class="form-signin" action="/v1/user/password" method="post">
+                    <label class="control-label" for="input01">新密码</label>
+                        <input type="password" placeholder="请输入新密码" class="form-control">
+                    <label class="control-label" for="input01">新密码确认</label>
+                        <input type="password" placeholder="请输入新密码" class="form-control">
+                    <label class="control-label" for="input01">邮箱验证码</label>
+                        <input type="text" placeholder="请输入邮箱验证码" class="form-control">
+                        <button class="btn btn-success">提交</button>
+        </form>
 </div> <!-- /container -->
 <script src="/js/validate.js"></script>
 <script src="/js/canvas.js"></script>
@@ -73,4 +62,3 @@
 <script src="/assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
-

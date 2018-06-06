@@ -49,11 +49,7 @@
                     <li class="active"><a href="/v1/home">管理员主页 </a></li>
                     <li><a href="/v1/user/list">资源管理 </a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                    <li><a href="../navbar-static-top/">Static top</a></li>
-                    <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-                </ul>
+
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>

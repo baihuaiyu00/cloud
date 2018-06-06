@@ -6,6 +6,7 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Created by baihuaiyu on 2018/5/5
@@ -24,4 +25,7 @@ public interface UserServiceApi {
 
     @RequestMapping(value = "/v1/user/list", method = RequestMethod.GET)
     String userList();
+
+    @RequestMapping(value = "/v1/user", method = RequestMethod.GET)
+    String getUser(@RequestParam(value = "username") String username);
 }

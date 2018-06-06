@@ -4,9 +4,7 @@ import com.xupt.cloud.manager.common.ManagerApiConstants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Objects;
@@ -87,5 +85,14 @@ public class IndexApiController {
         return "register";
     }
 
+    @RequestMapping(value = "/pwdForget" ,method = RequestMethod.GET)
+    public String pwdForget(){
+        return "pwdForget";
+    }
 
+    @ResponseBody
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String test(){
+        return "<h4>cloud-manager-A</h4>";
+    }
 }

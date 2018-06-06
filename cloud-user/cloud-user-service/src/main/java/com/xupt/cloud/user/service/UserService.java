@@ -56,4 +56,8 @@ public class UserService {
     public List<User> listUser() {
         return userDao.selectAll();
     }
+
+    public User getUserByName(String username) {
+        return userDao.selectByName(username);
+    }
 }

@@ -52,6 +52,7 @@
                     <li class="active"><a href="/v1/home">用户主页 </a></li>
                     <li><a href="/v1/myFile">资源上传 </a></li>
                     <li><a href="/v1/${Session['username']}/shares">我的分享</a></li>
+                    <li><a href="#">资源社区</a></li>
                     <li class="dropdown">
                         <a href="/v1/file/${Session["username"]}/list" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">我的资源 <span class="caret"></span></a>
                         <ul class="dropdown-menu">
@@ -65,11 +66,7 @@
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                    <li><a href="../navbar-static-top/">Static top</a></li>
-                    <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-                </ul>
+
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>

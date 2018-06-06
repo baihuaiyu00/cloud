@@ -50,11 +50,7 @@
                     <li><a href="/v1/home">管理员主页 </a></li>
                     <li class="active"><a href="/v1/user/list">资源管理 </a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="./">Default <span class="sr-only">(current)</span></a></li>
-                    <li><a href="../navbar-static-top/">Static top</a></li>
-                    <li><a href="../navbar-fixed-top/">Fixed top</a></li>
-                </ul>
+
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
     </nav>
@@ -73,6 +69,7 @@
                     <th>邮箱</th>
                     <th>电话</th>
                     <th>用户资源空间</th>
+                    <th>用户密码修改</th>
                     <#--<th colspan="3">操作</th>-->
                 </tr>
             <#list userList as item>
@@ -82,6 +79,7 @@
                     <td>${item.email!}</td>
                     <td>${item.phone!}</td>
                     <td><a href="/v1/file/${item.username!}/list">${item.username!}</a></td>
+                    <td><button onclick="#" class="btn btn-info">修改</button></td>
                 </tr>
             </#list>
             </table>
@@ -90,27 +88,6 @@
 
 </div> <!-- /container -->
 
-<#--file Share-->
-<div class="modal fade" tabindex="-1" role="dialog" id="file_share_modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">分享成功</h4>
-            </div>
-            <div class="modal-body h4">
-                <form id="share_form">
-                    <p>文件名称:</p><p id="file_name"></p><br>
-                    <p>文件路径：</p><p id="file_site"></p><br>
-                    <p>提取码：</p><p id="file_code"></p><br>
-                </form>
-            </div>
-            <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-    </div>
-        </div>
-    </div>
-</div>
 
 <div class="modal fade" tabindex="-1" role="dialog" id="file_del_modal">
     <div class="modal-dialog" role="document">

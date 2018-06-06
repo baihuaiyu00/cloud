@@ -38,9 +38,14 @@ public class FileShareController {
     public ResponseEntity shareFile(@RequestParam(value = "fileShare") String fileShare, HttpServletRequest request){
         try {
             FileShare fileShareBean = JSONUtils.fromJson(fileShare, FileShare.class);
+
             Random r = new Random();
             String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            String code = String.valueOf(r.nextInt(10)) + chars.charAt((int) (Math.random() * 26)) + String.valueOf(r.nextInt(10)) + chars.charAt((int) (Math.random() * 26)) + "";
+            String code = String.valueOf(r.nextInt(10))
+                    + chars.charAt((int) (Math.random() * 26))
+                    + String.valueOf(r.nextInt(10))
+                    + chars.charAt((int) (Math.random() * 26)) + "";
+
             fileShareBean.setCode(code);
             fileShareBean.setShareWebsite("http://localhost:8082/v1/"+fileShareBean.getUsername()+"/"+fileShareBean.getFileName()+"/share");
 

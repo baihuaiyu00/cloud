@@ -8,11 +8,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import com.xupt.cloud.user.entity.User;
-import org.springframework.web.bind.annotation.RestController;
+
 /**
  * Created by baihuaiyu on 2018/5/1
  */
@@ -48,6 +46,17 @@ public class UserApiController {
             }
         }catch (Exception e){
             LOGGER.info("login error",e);
+            return Replys.error(UserApiReplyMsg.USER_LOGIN_ERROR);
+        }
+    }
+
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public ResponseEntity getUser(@RequestParam(value = "username") String username){
+        try{
+            User user = userService.getUserByName(username);
+            return Replys.success(user);
+        }catch(Exception e){
+            LOGGER.info("get user error");
             return Replys.error(UserApiReplyMsg.USER_LOGIN_ERROR);
         }
     }
